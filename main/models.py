@@ -1,7 +1,7 @@
 from django.db import models
 
-
 # Create your models here.
+NULLABLE = {'blank': True, 'null': True}
 
 
 class Category(models.Model):
@@ -20,11 +20,11 @@ class Category(models.Model):
 class Product(models.Model):
     name = models.CharField(max_length=150, verbose_name='имя')
     description = models.TextField(max_length=150, verbose_name='описание')
-    image = models.ImageField(upload_to='images/', verbose_name='изображение')
+    image = models.ImageField(upload_to='images/', verbose_name='изображение', **NULLABLE)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     price = models.IntegerField(verbose_name="цена")
-    date_start = models.DateTimeField(verbose_name='дата создания')
-    data_end = models.DateTimeField(verbose_name="дата закрытия")
+    date_start = models.DateTimeField(verbose_name='дата создания', **NULLABLE)
+    data_end = models.DateTimeField(verbose_name="дата закрытия", **NULLABLE)
 
     def __str__(self):
         # Строковое отображение объекта
