@@ -1,0 +1,57 @@
+[
+  {
+    "model": "main.category",
+    "pk": 6,
+    "fields": {
+      "name": "vegetable",
+      "description": "vegetable"
+    }
+  },
+  {
+    "model": "main.category",
+    "pk": 7,
+    "fields": {
+      "name": "fruit",
+      "description": "fruit"
+    }
+  },
+  {
+    "model": "main.product",
+    "pk": 9,
+    "fields": {
+      "name": "orange",
+      "description": "orange",
+      "image": "",
+      "category": 7,
+      "price": 50,
+      "date_start": null,
+      "data_end": null
+    }
+  },
+  {
+    "model": "main.product",
+    "pk": 10,
+    "fields": {
+      "name": "apple",
+      "description": "red",
+      "image": "",
+      "category": 7,
+      "price": 131,
+      "date_start": null,
+      "data_end": null
+    }
+  },
+  {
+    "model": "main.product",
+    "pk": 11,
+    "fields": {
+      "name": "cucumber",
+      "description": "cucumber",
+      "image": "",
+      "category": 6,
+      "price": 13,
+      "date_start": null,
+      "data_end": null
+    }
+  }
+]
