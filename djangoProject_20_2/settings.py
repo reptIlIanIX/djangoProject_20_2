@@ -44,7 +44,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'main',
-    'CBV_products'
 ]
 
 MIDDLEWARE = [
