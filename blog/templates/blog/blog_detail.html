@@ -15,7 +15,16 @@
                     <li>{{ object.topic }} ({{ object.slug }})</li>
                     <li>{{ object.description }}</li>
                     <li>{{ object.date_start }}</li>
-                    <li>{{ object.is_published }}</li>
+                    {% if object.is_published %}
+                        <td>
+                        <p>&#10004; Опубликовано
+                    {% else %}
+                        <label>
+                            <input type="checkbox" disabled="disabled"> не опубликовано
+                        </label>
+                    {% endif %}
+
+
 
                     <li>Просмотры блога: {{ object.views_count }}</li>
 
