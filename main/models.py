@@ -10,7 +10,7 @@ class Category(models.Model):
 
     def __str__(self):
         # Строковое отображение объекта
-        return f'{self.name}, {self.description}'
+        return f'{self.name}'
 
     class Meta:
         verbose_name = 'категория'  # Настройка для наименования одного объекта
@@ -20,11 +20,12 @@ class Category(models.Model):
 class Product(models.Model):
     name = models.CharField(max_length=150, verbose_name='имя')
     description = models.TextField(max_length=150, verbose_name='описание')
-    image = models.ImageField(upload_to='images', verbose_name='изображение', **NULLABLE)
+    image = models.ImageField(upload_to='images/', verbose_name='изображение', **NULLABLE)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     price = models.IntegerField(verbose_name="цена")
     date_start = models.DateTimeField(verbose_name='дата создания', **NULLABLE)
     data_end = models.DateTimeField(verbose_name="дата закрытия", **NULLABLE)
+    views_count = models.IntegerField(default=0, verbose_name='Количество просмотров')
 
     def __str__(self):
         # Строковое отображение объекта
@@ -35,4 +36,9 @@ class Product(models.Model):
         verbose_name_plural = 'продукты'  # Настройка для наименования набора объектов
 
 
+
+class Version():
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, verbose_name='продукт')
+    version_name = models.CharField(max_length=100, verbose_name='версия')
+    is_active = models.BooleanField(verbose_name='Активен')
 
