@@ -1,8 +1,8 @@
 from django.urls import reverse_lazy, reverse
 from django.views.generic import ListView, DetailView, DeleteView, UpdateView, CreateView
 
-from main.forms import ProductForm
-from main.models import Product
+from main.forms import ProductForm, VersionForm
+from main.models import Product, Version
 
 
 class ProductListView(ListView):
@@ -35,4 +35,10 @@ class ProductDeleteView(DeleteView):
 class ProductCreateView(CreateView):
     model = Product
     form_class = ProductForm
+    success_url = reverse_lazy('main:read')
+
+
+class VersionCreateView(CreateView):
+    model = Version
+    form_class = VersionForm
     success_url = reverse_lazy('main:read')

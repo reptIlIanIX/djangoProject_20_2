@@ -1,6 +1,6 @@
 from django import forms
 
-from main.models import Product
+from main.models import Product, Version
 
 
 class ProductForm(forms.ModelForm):
@@ -25,3 +25,9 @@ class ProductForm(forms.ModelForm):
             if item in cleaned_description:
                 raise forms.ValidationError('Нельзя такое описание')
             return cleaned_description
+
+
+class VersionForm(forms.ModelForm):
+    class Meta:
+        model = Version
+        fields = '__all__'
