@@ -10,6 +10,11 @@ class ProductForm(forms.ModelForm):
         model = Product
         fields = ('name', 'description', 'category', 'price',)
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field_name, field in self.fields.items():
+            field.widget.attrs['class'] = 'form-control'
+
     def clean_name(self):
         cleaned_name = self.cleaned_data.get('name')
 
@@ -31,3 +36,9 @@ class VersionForm(forms.ModelForm):
     class Meta:
         model = Version
         fields = '__all__'
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field_name, field in self.fields.items():
+            if field_name != 'is_active':
+                field.widget.attrs['class'] = 'form-control'

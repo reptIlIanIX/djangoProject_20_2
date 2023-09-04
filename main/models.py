@@ -1,4 +1,5 @@
 from django.db import models
+from typing_extensions import Optional
 
 # Create your models here.
 NULLABLE = {'blank': True, 'null': True}
@@ -36,8 +37,7 @@ class Product(models.Model):
         verbose_name_plural = 'продукты'  # Настройка для наименования набора объектов
 
     @property
-
-    def active_version(self):
+    def active_version(self) -> Optional['Version']:
         return self.version_set.filter(is_active=True).last()
 
 

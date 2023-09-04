@@ -15,19 +15,17 @@
                     <li>{{ object.name }}</li>
                     <li>{{ object.description }}</li>
                     <li>{{ object.category }}</li>
-                    <li>{{ object.version__is_active }}</li>
+                    <li>Версия: {{ object.active_version }}</li>
 
 
                     <li>Просмотры блога: {{ object.views_count }}</li>
-
 
                 </ul>
                 <a href='{% url 'main:edit_product' object.id %}' type="button"
                    class="btn btn-lg btn-block btn-outline-primary">Изменить</a>
                 <a href='{% url 'main:delete' object.id %}' type="button"
                    class="btn btn-lg btn-block btn-outline-primary">Удалить</a>
-                <a href='{% url 'main:version' object.id %}' type="button"
-                   class="btn btn-lg btn-block btn-outline-primary">Создать версию</a>
+
             </div>
         </div>
     </div>

@@ -1,23 +1,43 @@
 {% extends 'main/base.html' %}
-
 {% block content %}
-    <div class="col-12">
-        <div class="row">
-            <div class='col-6'>
-                <div class="card">
-                    <div class="card-body">
-                        <form method="post" enctype="multipart/form-data">
-                            {% csrf_token %}
-                            {{ form.as_p }}
-                            {% if object %}
-                                <button type="submit" class="btn-success">Изменить</button>
-                            {% else %}
-                                <button type="submit" class="btn-success">Создать</button>
-                            {% endif %}
-                        </form>
+    <div class="col-6">
+        <form method="post" enctype="multipart/form-data">
+            <div class="card h-100">
+                <div class="card-header">
+                    {% if object %}
+                        <h2>Редактировать продукт</h2>
+                    {% else %}
+                        <h2>Cоздать продукт</h2>
+                        <div class="card-body">
+                    {% endif %}
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    {% if object %}
+                        <button class="btn btn-success">Сохранить</button>
+                    {% else %}
+                        <button class="btn btn-success">Создать</button>
+                    {% endif %}
                     </div>
                 </div>
             </div>
-        </div>
+            <div class="col-6">
+                <div class="card h-100">
+                    <div class="card-header">
+                        <ul class="list-unstyled mt-3 mb-4">
+
+                            <h2>Добавить версию</h2>
+                            <div class="card-body">
+                                {{ formset.management_form }}
+                                {% for form in formset.forms %}
+                                    {{ form.as_p }}
+                                    {% if not forloop.last %}
+                                        <hr>
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </form>
     </div>
 {% endblock %}

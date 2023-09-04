@@ -15,9 +15,12 @@
                         <li>{{ object.name }}</li>
                         <li>{{ object.description|truncatechars:100 }}</li>
                         {% if object.active_version %}
-                            {{ object.active_version }}
+                            <p>Версия: {{ object.active_version }}</p>
                         {% endif %}
-
+                        {{ formset.management_form }}
+                        {% for form in formset.forms %}
+                            {{ form.as_p }}
+                        {% endfor %}
                     </ul>
                     <a href="{% url 'main:view_product' object.id %}" type="button"
                        class="btn btn-lg btn-block btn-outline-primary">Посмотреть блог</a>
