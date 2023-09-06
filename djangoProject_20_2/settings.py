@@ -15,11 +15,11 @@ from pathlib import Path
 from django.conf.urls.static import static
 
 import _locale
+
 _locale._getdefaultlocale = (lambda *args: ['en_US', 'utf8'])
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
@@ -31,7 +31,6 @@ SECRET_KEY = 'django-insecure-@^h5(_onvlz+cn0f^p+l!k1^y7pz@umxt*kj3ojvu-te^d+t+%
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -79,19 +78,17 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'djangoProject_20_2.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'hw_20_1', # Название БД
-        'USER': 'postgres', # Пользователь для подключения
-        'PASSWORD': '1234', # Пароль для этого пользователя
+        'NAME': 'hw_20_1',  # Название БД
+        'USER': 'postgres',  # Пользователь для подключения
+        'PASSWORD': '1234',  # Пароль для этого пользователя
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -111,7 +108,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
@@ -122,7 +118,6 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
@@ -138,6 +133,7 @@ STATICFILES_DIRS = (
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+AUTH_USER_MODEL = 'users.User'
