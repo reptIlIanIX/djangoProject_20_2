@@ -142,6 +142,6 @@ LOGOUT_REDIRECT_URL = '/'
 
 EMAIL_HOST = 'smtp.yandex.ru'
 EMAIL_PORT = 465
-EMAIL_HOST_USER = "unsade@yandex"
+EMAIL_HOST_USER = "unsade@yandex.ru"
 EMAIL_HOST_PASSWORD = 'wkbidzvvtssbgort'
 EMAIL_USE_SSL = True

@@ -1,0 +1,7 @@
+{% autoescape off %}
+Hi, {{ user.get_username }}
+    Перейдите по ссылке, чтобы закончить верификацию
+http://{{ protocol }}://{{ domain }}{% url 'users:verify' uidb64=uid token=token %}
+
+
+{% endautoescape %}
