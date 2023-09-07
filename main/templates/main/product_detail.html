@@ -16,16 +16,12 @@
                     <li>{{ object.description }}</li>
                     <li>{{ object.category }}</li>
                     <li>Версия: {{ object.active_version }}</li>
-
-
                     <li>Просмотры блога: {{ object.views_count }}</li>
-
                 </ul>
                 <a href='{% url 'main:edit_product' object.id %}' type="button"
                    class="btn btn-lg btn-block btn-outline-primary">Изменить</a>
                 <a href='{% url 'main:delete' object.id %}' type="button"
                    class="btn btn-lg btn-block btn-outline-primary">Удалить</a>
-
             </div>
         </div>
     </div>
