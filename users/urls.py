@@ -12,4 +12,4 @@ urlpatterns = [path("", LoginView.as_view(template_name='users/login.html'), nam
                path("register/", RegisterView.as_view(), name='register'),
                path("profile/", ProfileView.as_view(), name='profile'),
                path("profile/genpassword", generate_password, name='password'),
-               path("reset/<uidb64>/<token>/", EmailVerify.as_view(), name="password_reset_confirm")]
+               path("reset/<uidb64>/<token>/", EmailVerify.as_view(), name="email_verify")]

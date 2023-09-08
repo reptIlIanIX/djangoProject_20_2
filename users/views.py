@@ -6,6 +6,7 @@ from django.contrib.auth.tokens import default_token_generator
 from django.contrib.sites.shortcuts import get_current_site
 from django.core.mail import send_mail, EmailMessage
 from django.shortcuts import render, redirect
+from django.template.context_processors import request
 from django.template.loader import render_to_string
 from django.urls import reverse_lazy, reverse
 from django.utils.encoding import force_bytes
@@ -18,24 +19,31 @@ from users.forms import UserRegisterForm, UserProfileForm
 from users.models import User
 
 
-def send_email_for_verify(request, user):
-    current_site = get_current_site(request)
-    context = {'user': user, 'domain': current_site.domain, 'uid': urlsafe_base64_encode(force_bytes(user.pk)),
-               'token': default_token_generator.make_token(user)}
-    message = render_to_string('users/verify.html', context=context)
-    email = EmailMessage('Verify mail', message, to=[user.email])
-    email.send()
+# def send_email_for_verify(request, user):
+#     current_site = get_current_site(request)
+#     context = {'user': user, 'domain': current_site.domain, 'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+#                'token': default_token_generator.make_token(user)}
+#     message = render_to_string('users/verify.html', context=context)
+#     email = EmailMessage('Verify mail', message, to=[user.email])
+#     email.send()
 
 class RegisterView(CreateView):
     model = User
     form_class = UserRegisterForm
-    send_email_for_verify()
     template_name = 'users/register.html'
     success_url = reverse_lazy('users:login')
 
     def form_valid(self, form):
         new_user = form.save()
-        send_mail(subject='Вы зарегистрировались', message='Зарегистрировались на новой платформе',
+        new_user.is_active = False
+        new_user.save()
+        token = default_token_generator.make_token(new_user)
+        uid = urlsafe_base64_encode(force_bytes(new_user.pk))
+        activation_url = reverse_lazy('users:email_verify', kwargs={'uid64': uid, 'token': token})
+        current_site = 'http://127.0.0.1:8000/'
+
+        send_mail(subject='Вы зарегистрировались',
+                  message=f'Зарегистрировались на новой платформе http://{current_site}{activation_url}',
                   from_email=settings.EMAIL_HOST_USER, recipient_list=[new_user.email])
         return super().form_valid(form)
 
@@ -62,5 +70,3 @@ def generate_password(request):
     request.user.set_password(new_password)
     request.user.save()
     return redirect(reverse('main:read'))
-
-
